@@ -38,7 +38,7 @@ Detta uppdaterar alla resurser i realtid och visar förändringar när nya pods 
 ### **5️⃣ Testa tjänsten**  
 #### **Kontrollera tjänstens detaljer**  
 ```sh
-kubectl get svc k8s-workshop
+https://localhost:80
 ```
 
 ---
@@ -97,8 +97,7 @@ kubectl apply -f k8s-workshop.yaml
 
 ### **3️⃣ Verifiera Deployment**  
 ```sh
-kubectl get pods -o wide
-kubectl get svc k8s-workshop
+https://localhost:80
 ```
 
 ---
