@@ -3,7 +3,7 @@
 ## Förbredelser 
 - [WSL](#wsl)
 - [Docker Desktop](#docker-desktop)
-- [Starta Kubernetes kluster](#starta-kubernetes-kluster)
+- [Starta Kubernetes kluster](#starta-kubernetes-klustret)
 - [Verifiera](#verifiera)
 - [Trubbleshooting](#trubbleshooting)
 
@@ -68,8 +68,10 @@ Om du får upp något som liknar detta så fungerar allt som det ska.
 Ibland kan docker försöka använda fel image för att starta klustret. För att lösa detta: 
 1. Stäng av Docker 
 2. Kör dessa kommandon i Powershell/WSL 
-  `docker pull k8s.gcr.io/coredns/coredns:v1.9.3 `
-  `docker tag k8s.gcr.io/coredns/coredns:v1.9.3 k8s.gcr.io/coredns:v1.9.3` 
+```
+docker pull k8s.gcr.io/coredns/coredns:v1.9.3
+docker tag k8s.gcr.io/coredns/coredns:v1.9.3 k8s.gcr.io/coredns:v1.9.3
+```
 
 Detta kommer hämta rätt images för kubernetes. Starta om Docker Desktop och försök starta kubernetes igen. 
 Om detta inte hjälper starta om datorn och försök igen. 
