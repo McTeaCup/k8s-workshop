@@ -1,10 +1,16 @@
 
-### **1️⃣ Skapa Deployment**  
+### **1️⃣ Öppna ett nytt terminalfönster och kör:**  
+```sh
+watch -n 1 kubectl get all
+```
+Detta uppdaterar alla resurser i realtid och visar förändringar när nya pods skapas eller tas bort.
+
+### **2️⃣ Skapa Deployment**  
 ```sh
 kubectl create deployment k8s-workshop --image=feighty7/k8s-workshop --replicas=3
 ```
 
-### **2️⃣ Injicera Pod-namn**  
+### **3️⃣ Injicera Pod-namn**  
 ```sh
 kubectl patch deployment k8s-workshop --type='json' -p='[
   {
@@ -24,16 +30,10 @@ kubectl patch deployment k8s-workshop --type='json' -p='[
 ]'
 ```
 
-### **3️⃣ Exponera Deployment**  
+### **4️⃣ Exponera Deployment**  
 ```sh
 kubectl expose deployment k8s-workshop --type=LoadBalancer --port=80 --target-port=5000
 ```
-
-### **4️⃣ Öppna ett nytt terminalfönster och kör:**  
-```sh
-watch -n 1 kubectl get all
-```
-Detta uppdaterar alla resurser i realtid och visar förändringar när nya pods skapas eller tas bort.
 
 ### **5️⃣ Testa tjänsten**  
 #### **Kontrollera tjänstens detaljer**  
