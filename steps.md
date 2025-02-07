@@ -1,4 +1,3 @@
-
 ### **1️⃣ Öppna ett nytt terminalfönster och kör:**  
 ```sh
 watch -n 1 kubectl get all
@@ -29,6 +28,10 @@ kubectl patch deployment k8s-workshop --type='json' -p='[
   }
 ]'
 ```
+📌 **Varför behövs denna patch?**  
+När vi skapar en deployment via `kubectl create deployment`, finns det ingen möjlighet att direkt sätta miljövariabler (env).  
+Patchningen lägger till en miljövariabel `POD_NAME`, som fylls med poddens namn dynamiskt av Kubernetes.  
+Detta är nödvändigt för att webbapplikationen ska kunna visa vilken pod som hanterar varje förfrågan.
 
 ### **4️⃣ Exponera Deployment**  
 ```sh
@@ -44,8 +47,20 @@ https://localhost:80
 ---
 
 ## **🔵 Del 2: Deployering med YAML**  
-### **1️⃣ Skapa Deployment & Service YAML**  
-📌 **Spara som `k8s-workshop.yaml`**  
+### **1️⃣ Skapa och applicera Deployment & Service YAML**  
+Det finns två sätt att applicera YAML-filen:
+
+#### **📌 Alternativ 1: Direkt från GitHub**  
+```sh
+kubectl apply -f https://raw.githubusercontent.com/McTeaCup/k8s-workshop/main/k8s-workshop.yaml
+```
+
+#### **📌 Alternativ 2: Skapa filen manuellt**  
+1️⃣ **Öppna en ny fil i editorn**  
+```sh
+vi k8s-workshop.yaml
+```
+2️⃣ **Klistra in följande YAML**  
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -88,14 +103,14 @@ spec:
   type: LoadBalancer
 ```
 
----
-
-### **2️⃣ Applicera Deployment & Service**  
+3️⃣ **Spara filen och applicera den**  
 ```sh
 kubectl apply -f k8s-workshop.yaml
 ```
 
-### **3️⃣ Verifiera Deployment**  
+---
+
+### **2️⃣ Verifiera Deployment**  
 ```sh
 https://localhost:80
 ```
