@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-workshop
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8s-workshop
+  template:
+    metadata:
+      labels:
+        app: k8s-workshop
+    spec:
+      containers:
+      - name: k8s-workshop
+        image: feighty7/k8s-workshop
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-workshop
+spec:
+  selector:
+    app: k8s-workshop
+  ports:
+  - protocol: TCP
+    port: 80       # External port
+    targetPort: 5000  # Flask app inside the container
+  type: LoadBalancer
