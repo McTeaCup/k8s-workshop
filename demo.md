@@ -47,7 +47,7 @@ kubectl expose deployment demo-pod --port=80 --target-port=5000 --type=LoadBalan
 Detta gör det möjligt att nå applikationen från vår webläsare på [localhost:80](http://localhost:80).
 
 ### Patching
-Nu har vi fått upp vår service och applikation som vi har deployat i vår kubernetes kluster, men just nu så kan vi inte se vilken pod vi läser från just nu. Detta är för att vår image behöver komma åt en environment variabel som vi glömde lägga in när vi byggde våra pods.
+Nu har vi fått upp vår service och applikation som vi har deployat i vår kubernetes kluster, men just nu så kan vi inte se vilken pod vi läser från just nu. Detta är för att vår image behöver komma åt en environment variabel i våra pods.
 
 Detta är ett perfekt exempel där vi kan använda oss av `kubectl patch`
 ```
@@ -71,8 +71,10 @@ kubectl patch deployment demo-pod --type='json' -p='[
 > [!NOTE]
 > Detta kommer att stänga ner dina pods du har haft tidigare och starta upp nya som ersätter dem med den uppdaterade veritionen.
 
-Om du nu går in på [localhost:80](http://localhost:80) igen och uppdaterar sidan så kommer du se att den refererar till en av de tre pods som ligger i ditt kluster. Om du fortsätter refresh:a hemsidan så kommer du se att namnet byts ut till en annan pod som du har i dit kluster.
-![image](https://github.com/user-attachments/assets/148a0421-7edb-4e6b-925a-e635a26db308)![image](https://github.com/user-attachments/assets/46ea1fe6-2b51-4061-b84b-9285b856e179)
+Om du nu går in på [localhost:80](http://localhost:80) igen och uppdaterar sidan så kommer du se att den refererar till en av de tre pods som ligger i ditt kluster. Om du fortsätter refresh:a hemsidan så kommer du se att namnet byts ut till en annan pod som du har i ditt kluster.
+
+![image](https://github.com/user-attachments/assets/148a0421-7edb-4e6b-925a-e635a26db308)
+![image](https://github.com/user-attachments/assets/46ea1fe6-2b51-4061-b84b-9285b856e179)
 
 Grattis! Du har nu skapat ett kubernetes kluster för en applikation som utnyttjar loadbalancing!
 > [!WARNING]
@@ -87,3 +89,29 @@ kubectl delete deployment demo-pod
 kubectl delete service demo-pod
 ```
 Detta kan ta en liten stund.
+
+---
+
+## KUBERNETES YAML DEMO
+När det kommer till produktionsnivå är CLI inte en så effektivt sätt att arbeta på i större kluster, vi vill hälst hålla vår infrastruktur i kod. Som tur är så supporar Kubernetes `YAML`-format för att bygga upp ett kluster.
+
+I denna demo ska vi göra samma deployment fast med en [`YAML`-fil](https://github.com/McTeaCup/k8s-workshop/blob/main/k8s-workshop.yaml). Det är upp till dig om du vill ladda ner filen eller kalla på den från repon direkt.
+
+### Starta Kubernetes klustret
+*För att sätta upp klustret från github länk*
+```
+$ kubectl apply -f https://raw.githubusercontent.com/McTeaCup/k8s-workshop/main/k8s-workshop.yaml
+```
+
+*För att sätta upp klustret från lokal fil*
+```
+$ kubectl apply -f <path>/k8s-workshop.yaml
+```
+
+Detta kommer att sätta upp hela klustret med deployment/repliaset/pods/service direkt.
+
+### Ta bort kluster
+För att ta bort klustret behöver du referea till filen igen *(via github länk eller fil på datorn)* och skriva följande kommando:
+```
+$ kubectl delete -f <path>/k8s-workshop.yaml
+```
