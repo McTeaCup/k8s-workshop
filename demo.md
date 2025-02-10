@@ -30,7 +30,6 @@ Vi börjar med att skapa en deployment resurs som vi kallar demo-pods. Detta kom
 ```
 kubectl create deployment demo-pod --image=feighty7/nginx-podname --replicas=3
 ```
-![image](https://github.com/user-attachments/assets/3d52ba0f-4f9d-418c-b4de-e938749b1e9e)
 - 3 Pods (`pod/demo-pod-<template-hash>-<podID>`)
 - 1 Deployment (`deployment.apps/demo-pod`)
 - 1 Replica set (`replicaset.apps/demo-pod-<template-hash>`)
@@ -40,7 +39,6 @@ Nu har vi skapat allt vi behöver för att få vår applikation att fungera i kl
 ```
 kubectl expose deployment demo-pod --port=80 --target-port=5000 --type=LoadBalancer
 ```
-![image](https://github.com/user-attachments/assets/7e0e3803-477c-4559-8a3b-7e72ed4a4c4d)
 > [!NOTE]
 > Som du kan se här så har vi en ny service som heter `service/demo-pod`.  Just denna image använder sig av Flask som använder sig av den intärna porten `5000` och vi vill lägga över den till port `80` på localhost. Det är detta som `--port=80` och `--target-port=5000` hanterar.
 
