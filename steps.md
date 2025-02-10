@@ -78,7 +78,7 @@ spec:
     spec:
       containers:
       - name: k8s-workshop
-        image: feighty7/k8s-workshop
+        image: feighty7/k8s-workshop:v1
         ports:
         - containerPort: 5000
         env:
