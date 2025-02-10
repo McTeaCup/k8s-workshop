@@ -6,7 +6,7 @@ Detta uppdaterar alla resurser i realtid och visar förändringar när nya pods 
 
 ### **2️⃣ Skapa Deployment**  
 ```sh
-kubectl create deployment k8s-workshop --image=feighty7/k8s-workshop --replicas=3
+kubectl create deployment k8s-workshop --image=feighty7/k8s-workshop:v1 --replicas=3
 ```
 
 ### **3️⃣ Exponera Deployment**  
