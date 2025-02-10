@@ -9,7 +9,12 @@ Detta uppdaterar alla resurser i realtid och visar förändringar när nya pods 
 kubectl create deployment k8s-workshop --image=feighty7/k8s-workshop --replicas=3
 ```
 
-### **3️⃣ Injicera Pod-namn**  
+### **3️⃣ Exponera Deployment**  
+```sh
+kubectl expose deployment k8s-workshop --type=LoadBalancer --port=80 --target-port=5000
+```
+
+### **4️⃣ Injicera Pod-namn**  
 ```sh
 kubectl patch deployment k8s-workshop --type='json' -p='[
   {
@@ -33,10 +38,6 @@ När vi skapar en deployment via `kubectl create deployment`, finns det ingen m�
 Patchningen lägger till en miljövariabel `POD_NAME`, som fylls med poddens namn dynamiskt av Kubernetes.  
 Detta är nödvändigt för att webbapplikationen ska kunna visa vilken pod som hanterar varje förfrågan.
 
-### **4️⃣ Exponera Deployment**  
-```sh
-kubectl expose deployment k8s-workshop --type=LoadBalancer --port=80 --target-port=5000
-```
 
 ### **5️⃣ Testa tjänsten**  
 #### **Kontrollera tjänstens detaljer**  
