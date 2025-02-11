@@ -45,6 +45,16 @@ Detta är nödvändigt för att webbapplikationen ska kunna visa vilken pod som 
 https://localhost:80
 ```
 
+## **🔄 Uppdatering av Image**  
+Om du pushar en ny bild, **uppdatera Kubernetes med:**  
+```sh
+kubectl rollout restart deployment k8s-workshop
+```
+Eller uppdatera bilden manuellt:  
+```sh
+kubectl set image deployment/k8s-workshop k8s-workshop=feighty7/k8s-workshop:v2
+```
+
 ---
 
 ## **🔵 Del 2: Deployering med YAML**  
@@ -115,20 +125,6 @@ kubectl apply -f k8s-workshop.yaml
 ```sh
 https://localhost:80
 ```
-
----
-
-## **🔄 Uppdatering av Image**  
-Om du pushar en ny bild, **uppdatera Kubernetes med:**  
-```sh
-kubectl rollout restart deployment k8s-workshop
-```
-Eller uppdatera bilden manuellt:  
-```sh
-kubectl set image deployment/k8s-workshop k8s-workshop=feighty7/k8s-workshop:v2
-```
-
----
 
 ## **🔼 Skala upp eller ner Deployment**  
 Om du vill **ändra antal pods** kan du skala upp eller ner:
