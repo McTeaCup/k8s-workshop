@@ -42,7 +42,7 @@ Detta är nödvändigt för att webbapplikationen ska kunna visa vilken pod som 
 ### **5️⃣ Testa tjänsten**  
 #### **Kontrollera tjänstens detaljer**  
 ```sh
-https://localhost:80
+http://localhost:80
 ```
 
 ## **🔄 Uppdatering av Image**  
@@ -123,7 +123,7 @@ kubectl apply -f k8s-workshop.yaml
 
 ### **2️⃣ Verifiera Deployment**  
 ```sh
-https://localhost:80
+http://localhost:80
 ```
 
 ## **🔼 Skala upp eller ner Deployment**  
